@@ -1,0 +1,31 @@
+pipeline {
+    agent any 
+
+    stages{
+        stage ('install-nginx')
+        {
+            steps {
+                    sh 'sudo apt update -y'
+                    sh 'sudo apt install nginx -y'
+            }
+        }
+
+        stage ('Nginx-stop')
+        {
+            steps{
+                   sh 'sudo systemctl stop nginx'
+            }
+        }
+
+        stage ('Start-Nginx')
+        {
+            steps {
+                sh ' sudo systemctl start nginx'
+            }
+        }
+    }
+}
+// version jenkins 2.23
+// This pipeline is based on groovy language
+// JVM support
+//Jenkins is an open-source Continuous Integration server written in Java for orchestrating a chain of actions to achieve the Continuous Integration process in an automated fashion. Jenkins supports the complete development life cycle of software from building, testing, documenting the software, deploying, and other stages of the software development life cycle.
